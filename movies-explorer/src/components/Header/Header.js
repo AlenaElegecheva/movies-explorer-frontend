@@ -4,10 +4,9 @@ import './Header.css';
 import logo from '../../images/logo.svg';
 import account from '../../images/icon_account.svg';
 import burger from '../../images/icon_burger.svg';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function Header(props) {
-  const {loggedIn, handleMenuClick } = props;
+  const { handleMenuClick, loggedIn } = props;
   return (
     <>
       {!loggedIn ? (
@@ -57,7 +56,6 @@ function Header(props) {
                 <button className="header__burger-button" onClick={handleMenuClick}>
                   <img src={burger} alt="бургер-меню" />
                 </button>
-                <BurgerMenu />
               </li>
             </ul>
           </nav>

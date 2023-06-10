@@ -1,11 +1,16 @@
 import React from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Profile() {
+function Profile(props) {
+  const { handleMenuClick, menuOpen, closePopups } = props;
   return (
     <>
-      <Header loggedIn={true} />
+      <BurgerMenu
+        menuOpen={menuOpen}
+        closePopups={closePopups} />
+      <Header loggedIn={true} onClick={handleMenuClick} />
       <section className="profile">
         <h3 className="profile__title">Привет, Алёна!</h3>
         <form id="form" className="profile__form" >
@@ -20,7 +25,7 @@ function Profile() {
               type="text"
               minLength="2"
               maxLength="40"
-              value={'Алёна'}
+              defaultValue='Алёна'
               required
             />
             <span className="profile__input-error"></span>
@@ -35,7 +40,7 @@ function Profile() {
               className="profile__input"
               id="email-input"
               type="email"
-              value={'test@test.ru'}
+              defaultValue='test@test.ru'
               required
             />
             <span className="profile__input-error"></span>

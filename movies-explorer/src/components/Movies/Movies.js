@@ -4,13 +4,20 @@ import Header from '../Header/Header';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Movies({ loggedIn }) {
+function Movies(props) {
+  const { menuOpen, closePopups, isLiked, handleLikeClick } = props;
   return (
     <section className="movies">
+      <BurgerMenu
+        menuOpen={menuOpen}
+        closePopups={closePopups} />
       <Header loggedIn={true} />
       <SearchForm />
-      <MoviesCardList />
+      <MoviesCardList
+        isLiked={isLiked}
+        handleLikeClick={handleLikeClick} />
       <Footer />
     </section>
   );

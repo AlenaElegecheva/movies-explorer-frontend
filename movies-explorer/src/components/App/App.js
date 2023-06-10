@@ -8,12 +8,15 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLiked, setIsLiked] = useState(false)
+
   function handleMenuClick() {
     setMenuOpen(true);
+    console.log("open")
   }
 
   function handleLikeClick() {
@@ -31,9 +34,7 @@ function App() {
             path="/"
             element={
               <Main
-                menuOpen={menuOpen}
                 handleMenuClick={handleMenuClick}
-                closePopups={closePopups}
               />}
           />
           <Route
@@ -44,21 +45,39 @@ function App() {
             element={<Register />} />
           <Route
             path="/movies"
-            element={<Movies />} />
+            element={
+              <Movies
+                menuOpen={menuOpen}
+                closePopups={closePopups}
+                isLiked={isLiked}
+                handleLikeClick={handleLikeClick}
+                handleMenuClick={handleMenuClick}
+              />} />
           <Route
             path="/saved-movies"
             element={
               <SavedMovies
+                menuOpen={menuOpen}
+                closePopups={closePopups}
                 isLiked={isLiked}
                 handleLikeClick={handleLikeClick}
               />} />
           <Route
             path="/profile"
-            element={<Profile />} />
+            element={
+              <Profile
+                menuOpen={menuOpen}
+                closePopups={closePopups}
+                handleMenuClick={handleMenuClick}
+              />} />
           <Route
             path="/*"
             element={<NotFound />} />
         </Routes>
+        <BurgerMenu
+          menuOpen={menuOpen}
+          closePopups={closePopups}
+        />
       </div>
     </div>
   );

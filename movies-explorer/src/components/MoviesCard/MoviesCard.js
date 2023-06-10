@@ -4,7 +4,8 @@ import image1 from '../../images/pic_1.jpg'
 import image2 from '../../images/pic_2.jpg'
 import image3 from '../../images/pic_3.jpg'
 
-function MoviesCard({ trailerLink, isLiked }) {
+function MoviesCard(props) {
+  const { trailerLink, handleLikeClick, isLiked } = props;
   return (
     <>
       <li className="card">
@@ -21,7 +22,7 @@ function MoviesCard({ trailerLink, isLiked }) {
             <p className="card__time">1ч 47м</p>
           </figcaption>
           <button type="button" className="card__delete-button"></button>
-          <button type="button" className='card__like-button card__like-button_active' onClick={isLiked}></button>
+          <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
         </div>
       </li>
       <li className="card">
@@ -38,7 +39,7 @@ function MoviesCard({ trailerLink, isLiked }) {
             <p className="card__time">1ч 3м</p>
           </figcaption>
           <button type="button" className="card__delete-button"></button>
-          <button type="button" className='card__like-button'></button>
+          <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
         </div>
       </li>
       <li className="card">
@@ -55,7 +56,7 @@ function MoviesCard({ trailerLink, isLiked }) {
             <p className="card__time">1ч 42м</p>
           </figcaption>
           <button type="button" className="card__delete-button"></button>
-          <button type="button" className='card__like-button'></button>
+          <button type="button" className={`card__like-button ${ isLiked ? "card__like-button_active" : ""}`} onClick={handleLikeClick}></button>
         </div>
       </li>
     </>
