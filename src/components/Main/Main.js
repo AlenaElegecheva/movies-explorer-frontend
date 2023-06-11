@@ -8,11 +8,10 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Main(props) {
-  const { handleMenuClick } = props;
+function Main() {
   return (
     <main className='main'>
-      <Header handleMenuClick={handleMenuClick} />
+      <Header />
       <Promo />
       <AboutProject />
       <Techs />

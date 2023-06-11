@@ -8,7 +8,6 @@ import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile';
 import NotFound from '../NotFound/NotFound';
-import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -32,10 +31,7 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={
-              <Main
-                handleMenuClick={handleMenuClick}
-              />}
+            element={<Main />}
           />
           <Route
             path="/signin"
@@ -61,6 +57,7 @@ function App() {
                 closePopups={closePopups}
                 isLiked={isLiked}
                 handleLikeClick={handleLikeClick}
+                handleMenuClick={handleMenuClick}
               />} />
           <Route
             path="/profile"
@@ -74,10 +71,6 @@ function App() {
             path="/*"
             element={<NotFound />} />
         </Routes>
-        <BurgerMenu
-          menuOpen={menuOpen}
-          closePopups={closePopups}
-        />
       </div>
     </div>
   );

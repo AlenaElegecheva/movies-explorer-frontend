@@ -7,15 +7,19 @@ import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function SavedMovies(props) {
-  const { menuOpen, closePopups, isLiked } = props;
+  const { menuOpen, closePopups, isLiked, handleMenuClick, handleLikeClick } = props;
   return (
     <section className="movies">
       <BurgerMenu
         menuOpen={menuOpen}
         closePopups={closePopups} />
-      <Header loggedIn={true} />
+      <Header
+        loggedIn={true}
+        handleMenuClick={handleMenuClick} />
       <SearchForm />
-      <MoviesCardList isLiked={isLiked} />
+      <MoviesCardList
+      isLiked={isLiked}
+      handleLikeClick={handleLikeClick} />
       <Footer />
     </section>
   );

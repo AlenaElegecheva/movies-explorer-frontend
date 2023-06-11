@@ -3,7 +3,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 function MoviesCardList(props) {
-  const { isLiked } = props;
+  const { isLiked, handleLikeClick } = props;
   const cards = Array.apply(null, Array(4)).map((elem, i) => {
     return i;
   });
@@ -11,7 +11,7 @@ function MoviesCardList(props) {
     <section className="cards">
       <ul className="cards__list">
         {cards.map((card, i) => (
-          <MoviesCard key={ i } isLiked={isLiked} />
+          <MoviesCard key={ i } isLiked={isLiked} handleLikeClick={handleLikeClick} />
         ))}
       </ul>
       <div className="cards__button-container">

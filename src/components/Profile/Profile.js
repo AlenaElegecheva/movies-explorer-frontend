@@ -5,13 +5,14 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function Profile(props) {
   const { handleMenuClick, menuOpen, closePopups } = props;
+
   return (
-    <>
+    <section className="profile">
       <BurgerMenu
         menuOpen={menuOpen}
         closePopups={closePopups} />
-      <Header loggedIn={true} onClick={handleMenuClick} />
-      <section className="profile">
+      <Header loggedIn={true} handleMenuClick={handleMenuClick} />
+      <div className='profile__container'>
         <h3 className="profile__title">Привет, Алёна!</h3>
         <form id="form" className="profile__form" >
           <div className='profile__row'>
@@ -55,8 +56,8 @@ function Profile(props) {
             Выйти из аккаунта
           </button>
         </form>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 

@@ -7,13 +7,15 @@ import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 function Movies(props) {
-  const { menuOpen, closePopups, isLiked, handleLikeClick } = props;
+  const { menuOpen, closePopups, isLiked, handleLikeClick, handleMenuClick } = props;
   return (
     <section className="movies">
       <BurgerMenu
         menuOpen={menuOpen}
         closePopups={closePopups} />
-      <Header loggedIn={true} />
+      <Header
+        loggedIn={true}
+        handleMenuClick={handleMenuClick} />
       <SearchForm />
       <MoviesCardList
         isLiked={isLiked}
