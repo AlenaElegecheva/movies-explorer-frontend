@@ -41,15 +41,14 @@
   }
   .promo__title {
     padding: 300px 0 140px 0;
-    max-width: 680px;
     font-size: 40px;
     line-height: 52px;
     text-align: center;
-    align-self: center;
+    margin: 0 auto;
   }
 }
 
-@media screen and (max-width: 576px) {
+@media screen and (max-width: 750px) {
   .promo {
     padding: 14px 14px 0 14px;
   }

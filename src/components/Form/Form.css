@@ -86,7 +86,6 @@
   color: #fff;
   margin-bottom: 20px;
   padding: 15px;
-  width: 100%;
   font-weight: 400;
   font-size: 13px;
   line-height: 15.73px;
@@ -94,6 +93,10 @@
   outline: none;
   border-radius: 8px;
   background-color: #2F2F2F;
+}
+
+.form__input:focus {
+  background-color: #4285F4;
 }
 
 @media screen and (max-width: 1023px) {
