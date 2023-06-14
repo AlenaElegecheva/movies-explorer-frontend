@@ -16,10 +16,12 @@ function SavedMovies(props) {
       <Header
         loggedIn={true}
         handleMenuClick={handleMenuClick} />
-      <SearchForm />
-      <MoviesCardList
-      isLiked={isLiked}
-      handleLikeClick={handleLikeClick} />
+      <main>
+        <SearchForm />
+        <MoviesCardList
+          isLiked={isLiked}
+          handleLikeClick={handleLikeClick} />
+      </main>
       <Footer />
     </section>
   );

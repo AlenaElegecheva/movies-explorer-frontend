@@ -12,7 +12,7 @@ function Profile(props) {
         menuOpen={menuOpen}
         closePopups={closePopups} />
       <Header loggedIn={true} handleMenuClick={handleMenuClick} />
-      <div className='profile__container'>
+      <main className='profile__container'>
         <h3 className="profile__title">Привет, Алёна!</h3>
         <form id="form" className="profile__form" >
           <div className='profile__row'>
@@ -56,7 +56,7 @@ function Profile(props) {
             Выйти из аккаунта
           </button>
         </form>
-      </div>
+      </main>
     </section>
   );
 }
