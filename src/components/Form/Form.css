@@ -50,6 +50,15 @@
   background-color: #3DDC84;
 }
 
+.form__button-save_inactive {
+  pointer-events: none;
+  background: #F8F8F8;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: #000000;
+  opacity: 0.2;
+}
+
 .form__text {
   margin: 0;
   padding: 16px 0 0 0;
@@ -84,7 +93,7 @@
 
 .form__input {
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 15px;
   font-weight: 400;
   font-size: 13px;
@@ -93,6 +102,15 @@
   outline: none;
   border-radius: 8px;
   background-color: #2F2F2F;
+}
+
+.form__input-error {
+  color: #EE3465;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  padding: 0;
+  margin: 0 0 10px 0;
 }
 
 .form__input:focus {
