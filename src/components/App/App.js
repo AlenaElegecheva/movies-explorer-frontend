@@ -30,6 +30,7 @@ function App() {
       api.getSaveCards()
         .then((data) => {
           setSavedMovies(data);
+          console.log(data)
         })
         .catch((err) => {
           console.log(err);
@@ -83,6 +84,7 @@ function App() {
   }
 
   function tokenCheck() {
+    setIsLoading(true);
     api.checkToken()
       .then((res) => {
         setLoggedIn(true);
@@ -91,6 +93,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       })
   }
 
@@ -159,68 +164,73 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <CurrentUserContext.Provider value={currentUser}>
-          <Preloader isLoading={isLoading} />
-          <Routes>
-            <Route
-              path="/"
-              element={<Main />}
-            />
-            <Route
-              path="/signin"
-              element={<Login
-                loggedIn={loggedIn}
-                onLogin={handleLoginSubmit}
-                isLoading={isLoading}
-              />} />
-            <Route
-              path="/signup"
-              element={<Register
-                // loggedIn={loggedIn}
-                onRegistr={handleRegisterSubmit}
-                isLoading={isLoading}
-              />} />
-            <Route
-              path="/movies"
-              element={<ProtectedRoute element={Movies}
-                signOut={handleSignOut}
-                onUpdateUser={handleUpdateUser}
-                loggedIn={loggedIn}
-                menuOpen={menuOpen}
-                closePopups={closePopups}
-                handleMenuClick={handleMenuClick}
-                handleCardDelete={handleCardDelete}
-                isLoading={isLoading}
-                handleLikeClick={handleLikeClick}
-              />} />
-            <Route
-              path="/saved-movies"
-              element={<ProtectedRoute element={SavedMovies}
-                loggedIn={loggedIn}
-                menuOpen={menuOpen}
-                closePopups={closePopups}
-                handleMenuClick={handleMenuClick}
-                handleCardDelete={handleCardDelete}
-                handleLikeClick={handleLikeClick}
-              />} />
-            <Route
-              path="/profile"
-              element={<ProtectedRoute element={Profile}
-                loggedIn={loggedIn}
-                menuOpen={menuOpen}
-                isSuccess={isSuccess}
-                closePopups={closePopups}
-                handleMenuClick={handleMenuClick}
-                isLoading={isLoading}
-                handleUpdateUser={handleUpdateUser}
-                handleSignOut={handleSignOut}
-              />} />
-            <Route
-              path="/*"
-              element={<NotFound />} />
-          </Routes>
-          <InfoTooltip isSuccess={isSuccess} onClose={closePopups} InfoTooltipPopup={InfoTooltipPopup} />
-        </CurrentUserContext.Provider >
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <CurrentUserContext.Provider value={currentUser}>
+            <Routes>
+              <Route
+                path="/"
+                element={<Main />}
+              />
+              <Route
+                path="/signin"
+                element={<Login
+                  loggedIn={loggedIn}
+                  onLogin={handleLoginSubmit}
+                  isLoading={isLoading}
+                />} />
+              <Route
+                path="/signup"
+                element={<Register
+                  // loggedIn={loggedIn}
+                  onRegistr={handleRegisterSubmit}
+                  isLoading={isLoading}
+                />} />
+              <Route
+                path="/movies"
+                element={<ProtectedRoute element={Movies}
+                  signOut={handleSignOut}
+                  onUpdateUser={handleUpdateUser}
+                  loggedIn={loggedIn}
+                  menuOpen={menuOpen}
+                  closePopups={closePopups}
+                  handleMenuClick={handleMenuClick}
+                  handleCardDelete={handleCardDelete}
+                  isLoading={isLoading}
+                  handleLikeClick={handleLikeClick}
+                  savedMovies={savedMovies}
+                />} />
+              <Route
+                path="/saved-movies"
+                element={<ProtectedRoute element={SavedMovies}
+                  loggedIn={loggedIn}
+                  menuOpen={menuOpen}
+                  closePopups={closePopups}
+                  handleMenuClick={handleMenuClick}
+                  handleCardDelete={handleCardDelete}
+                  handleLikeClick={handleLikeClick}
+                  savedMovies={savedMovies}
+                />} />
+              <Route
+                path="/profile"
+                element={<ProtectedRoute element={Profile}
+                  loggedIn={loggedIn}
+                  menuOpen={menuOpen}
+                  isSuccess={isSuccess}
+                  closePopups={closePopups}
+                  handleMenuClick={handleMenuClick}
+                  isLoading={isLoading}
+                  handleUpdateUser={handleUpdateUser}
+                  handleSignOut={handleSignOut}
+                />} />
+              <Route
+                path="/*"
+                element={<NotFound />} />
+            </Routes>
+            <InfoTooltip isSuccess={isSuccess} onClose={closePopups} InfoTooltipPopup={InfoTooltipPopup} />
+          </CurrentUserContext.Provider >
+        )}
       </div>
     </div>
   );

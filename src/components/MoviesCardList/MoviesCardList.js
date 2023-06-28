@@ -8,13 +8,11 @@ import { DECKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION } from '../../utils/con
 
 function MoviesCardList({
   handleLikeClick,
-  loggedIn,
   handleCardDelete,
   isLoading,
   isNotFound,
   isReqError,
   isSavedFilms,
-  saved,
   savedMovies,
   cards
 }) {
@@ -45,10 +43,6 @@ function MoviesCardList({
     }
   }
 
-  // function getSavedMovieCard(savedMovies, card) { // не нравится метод find, как организовать постановку лайков и сохранение этих фильмов в роут saves-movies
-  //   return savedMovies.find((savedMovie) => savedMovie.movieId === card.id);
-  // }
-
   useEffect(() => {
     cardsCount();
   }, []);
@@ -78,7 +72,6 @@ function MoviesCardList({
                 {cards.map((card) => (
                   <MoviesCard
                     key={isSavedFilms ? card._id : card.id}
-                    // saved={getSavedMovieCard(savedMovies, card)}
                     handleLikeClick={handleLikeClick}
                     card={card}
                     cards={cards}
@@ -92,10 +85,9 @@ function MoviesCardList({
           ) : (
             <>
               <ul className="cards__list">
-                {cards.slice(0, shownCards).map((card) => (
+                {(!!cards) ? cards.slice(0, shownCards).map((card) => (
                   <MoviesCard
                     key={isSavedFilms ? card._id : card.id}
-                    // saved={getSavedMovieCard(savedMovies, card)}
                     handleLikeClick={handleLikeClick}
                     card={card}
                     cards={cards}
@@ -103,10 +95,10 @@ function MoviesCardList({
                     isSavedFilms={isSavedFilms}
                     savedMovies={savedMovies}
                   />
-                ))}
+                )) : ""}
               </ul>
               <div className="cards__button-container">
-                {cards.length > shownCards ? (
+                {(!!cards && cards.length > shownCards) ? (
                   <button className="cards__button" onClick={showMoreCards}>
                     Ещё
                   </button>

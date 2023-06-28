@@ -6,12 +6,12 @@ export const EMAIL_REGEX = '^[^ ]+@[^ ]+\.[a-z]{2,3}$';
 export const USER_REGEX = '^[A-Za-zА-Яа-яЁё\\-\\s]+$';
 
 export function filterMovies(movies, query) {
-  const moviesByQuery = movies.filter((movie) => {
+  const moviesByQuery = !!movies ? movies.filter((movie) => {
     const movieRu = String(movie.nameRU).toLowerCase();
     const movieEn = String(movie.nameEN).toLowerCase();
     const userQuery = query.toLowerCase();
     return movieRu.indexOf(userQuery) !== -1 || movieEn.indexOf(userQuery) !== -1;
-  });
+  }): [];
   return moviesByQuery;
 }
 
