@@ -25,12 +25,23 @@ function App() {
   const navigate = useNavigate();
 
 
-  useEffect(() => { // загрузка карточек и данных пользователя с сервера
+  useEffect(() => { // загрузка карточек с сервера
     if (loggedIn) {
       api.getSaveCards()
         .then((data) => {
           setSavedMovies(data);
-          console.log(data)
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }, [loggedIn]);
+
+  useEffect(() => { // загрузка данных пользователя с сервера
+    if (loggedIn) {
+      api.getUserInfo()
+        .then((data) => {
+          setCurrentUser(data);
         })
         .catch((err) => {
           console.log(err);
@@ -57,6 +68,8 @@ function App() {
       .then(() => {
         setLoggedIn(true);
         navigate('/movies', { replace: true })
+        setCurrentUser(inputValues)
+        setIsSuccess(true);
       })
       .catch((err) => {
         setIsSuccess(false);
@@ -64,6 +77,7 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
+        setInfoToolTipPopup(true)
       });
   }
 
@@ -85,7 +99,7 @@ function App() {
 
   function tokenCheck() {
     setIsLoading(true);
-    api.checkToken()
+    api.getUserInfo()
       .then((res) => {
         setLoggedIn(true);
         setCurrentUser(res);
@@ -93,6 +107,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        navigate('/', { replace: true })
       })
       .finally(() => {
         setIsLoading(false);
@@ -115,7 +130,6 @@ function App() {
       .catch((err) => {
         setIsSuccess(false);
         console.log(err);
-        handleUnauthorized(err);
       })
       .finally(() => {
         setIsLoading(false);
@@ -123,13 +137,7 @@ function App() {
       });
   }
 
-  function handleUnauthorized(err) {
-    if (err === 'Error: 401') {
-      handleSignOut();
-    }
-  }
-
-  const handleSignOut = () => {
+  function handleSignOut() {
     setLoggedIn(false);
     setCurrentUser({});
     localStorage.removeItem('movies');
@@ -146,7 +154,6 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        handleUnauthorized(err);
       });
   }
 
@@ -157,7 +164,6 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        handleUnauthorized(err);
       });
   }
 
@@ -183,7 +189,6 @@ function App() {
               <Route
                 path="/signup"
                 element={<Register
-                  // loggedIn={loggedIn}
                   onRegistr={handleRegisterSubmit}
                   isLoading={isLoading}
                 />} />

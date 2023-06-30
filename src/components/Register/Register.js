@@ -41,6 +41,7 @@ function Register({ onRegistr, isLoading }) {
         onChange={handleChange}
         value={enteredValues.name || ''}
         pattern={USER_REGEX}
+        title="Поле должно содержать только латиницу, кириллицу, пробел или дефис"
       />
       <span className="form__input-error">{errors.name}</span>
       <label className="form__field">
