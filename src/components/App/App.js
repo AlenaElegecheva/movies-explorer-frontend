@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import './App.css';
 import Main from '../Main/Main';
 import Login from '../Login/Login';
@@ -23,6 +23,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [InfoTooltipPopup, setInfoToolTipPopup] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
 
   useEffect(() => { // загрузка карточек с сервера
@@ -103,6 +104,7 @@ function App() {
       .then((res) => {
         setLoggedIn(true);
         setCurrentUser(res);
+        navigate(location.pathname, { replace: true })
       })
       .catch((err) => {
         console.log(err);
