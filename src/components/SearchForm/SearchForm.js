@@ -8,6 +8,13 @@ function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
   const [movieQuery, setMovieQuery] = useState('');
   const { pathname } = useLocation;
 
+  useEffect(() => {
+    if (pathname === '/movies' && localStorage.getItem('movieSearch')) {
+      const localQuery = localStorage.getItem('movieSearch');
+      setMovieQuery(localQuery);
+    }
+  }, [pathname]);
+
   function handleChangeQuery(e) {
     setMovieQuery(e.target.value);
   }
@@ -22,13 +29,6 @@ function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
     }
   }
 
-  useEffect(() => {
-    if (pathname === '/movies' && localStorage.getItem('movieSearch')) {
-      const localQuery = localStorage.getItem('movieSearch');
-      setMovieQuery(localQuery);
-    }
-  }, [pathname]);
-
   return (
     <section className="search">
       <form className="search__form" id="form" onSubmit={handleSubmit}>
@@ -40,7 +40,7 @@ function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
           placeholder="Фильм"
           onChange={handleChangeQuery}
           value={movieQuery || ''}
-          required>
+          >
         </input>
         <button className="search__button" type="submit">Найти</button>
       </form>

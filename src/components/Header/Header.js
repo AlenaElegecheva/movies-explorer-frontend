@@ -5,8 +5,9 @@ import logo from '../../images/logo.svg';
 import account from '../../images/icon_account.svg';
 import burger from '../../images/icon_burger.svg';
 
-function Header(props) {
-  const { handleMenuClick, loggedIn } = props;
+function Header({ handleMenuClick, loggedIn }) {
+  const headerButtonClassName = ({ isActive }) =>
+  `header__button ${isActive ? "header__button_active" : ""}`;
   return (
     <>
       {!loggedIn ? (
@@ -33,14 +34,14 @@ function Header(props) {
               <li>
                 <NavLink
                   to="/movies"
-                  className="header__button">
+                  className={headerButtonClassName}>
                   Фильмы
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="/saved-movies"
-                  className="header__button">
+                  className={headerButtonClassName}>
                   Сохранённые фильмы
                 </NavLink>
               </li>

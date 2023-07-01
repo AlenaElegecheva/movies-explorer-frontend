@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import './MoviesCard.css';
-import { durationConverter } from "../../utils/constants";
+import { durationConverter } from "../../utils/utils";
 
 function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, savedMovies }) {
   const defaultsaved = savedMovies.filter((m) => m.movieId === card.id).length > 0;

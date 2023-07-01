@@ -6,7 +6,7 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import * as movies from '../../utils/MoviesApi';
-import { filterMovies, durationFilter } from '../../utils/constants';
+import { filterMovies, durationFilter } from '../../utils/utils';
 
 function Movies({
   menuOpen,

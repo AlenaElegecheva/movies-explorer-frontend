@@ -5,7 +5,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Footer from '../Footer/Footer';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
-import { filterMovies, durationFilter } from '../../utils/constants';
+import { filterMovies, durationFilter } from '../../utils/utils';
 
 function SavedMovies({ menuOpen, closePopups, loggedIn, handleMenuClick, handleCardDelete, savedMovies }) {
   const [filteredMovies, setFilteredMovies] = useState(savedMovies); //отфильтрованные по запросу и чекбоксу
@@ -42,7 +42,9 @@ function SavedMovies({ menuOpen, closePopups, loggedIn, handleMenuClick, handleC
         loggedIn={loggedIn}
         handleMenuClick={handleMenuClick} />
       <main>
-        <SearchForm onFilter={handleShortMovies} handleSearchMovies={handleSearchMovies} />
+        <SearchForm
+        onFilter={handleShortMovies}
+        handleSearchMovies={handleSearchMovies} />
         <MoviesCardList
         isNotFound={isNotFound}
         isSavedFilms={true}

@@ -17,6 +17,19 @@
   gap: 10px;
 }
 
+.search__form-error {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: red;
+}
+
 .search__input {
   min-height: 48px;
   background-color: #2F2F2F;

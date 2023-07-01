@@ -31,6 +31,17 @@ export function login(email, password) {
     .then(checkResponse)
 }
 
+export function logout() {
+  return fetch(BASE_URL + '/signout', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: "include"
+  })
+    .then(checkResponse)
+}
+
 export function getUserInfo() {
   return fetch(BASE_URL + '/users/me', {
     method: 'GET',

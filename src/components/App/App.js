@@ -103,11 +103,9 @@ function App() {
       .then((res) => {
         setLoggedIn(true);
         setCurrentUser(res);
-        navigate('/movies', { replace: true })
       })
       .catch((err) => {
         console.log(err);
-        navigate('/', { replace: true })
       })
       .finally(() => {
         setIsLoading(false);
@@ -138,13 +136,16 @@ function App() {
   }
 
   function handleSignOut() {
-    setLoggedIn(false);
-    setCurrentUser({});
-    localStorage.removeItem('movies');
-    localStorage.removeItem('movieSearch');
-    localStorage.removeItem('shortMovies');
-    localStorage.removeItem('allMovies');
-    navigate("/", { replace: true });
+    api.logout()
+      .then((res) => {
+        setLoggedIn(false);
+        setCurrentUser({});
+        localStorage.clear();
+        navigate("/", { replace: true });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   function handleLikeClick(card) {
@@ -177,7 +178,10 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Main />}
+                element={<Main
+                  handleMenuClick={handleMenuClick}
+                  loggedIn={loggedIn}
+                />}
               />
               <Route
                 path="/signin"

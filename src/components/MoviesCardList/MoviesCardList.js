@@ -4,7 +4,7 @@ import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 import Preloader from '../Preloader/Preloader';
 import SearchError from '../SearchError/SearchError';
-import { DECKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION } from '../../utils/constants';
+import { DESKTOP_VERSION, TABLET_VERSION, MOBILE_VERSION, DESKTOP, TABLET } from '../../utils/constants';
 
 function MoviesCardList({
   handleLikeClick,
@@ -22,23 +22,23 @@ function MoviesCardList({
 
   function cardsCount() {
     const display = window.innerWidth;
-    if (display > 1180) {
+    if (display > DESKTOP) {
       setShownCards(12);
-    } else if (display > 768) {
+    } else if (display > TABLET) {
       setShownCards(8);
-    } else if (display < 768) {
+    } else if (display < TABLET) {
       setShownCards(5);
     }
   }
 
   function showMoreCards() {
     const display = window.innerWidth;
-    if (display > 1180) {
-      setShownCards(shownCards + DECKTOP_VERSION);
-    } else if (display > 768) {
+    if (display > DESKTOP) {
+      setShownCards(shownCards + DESKTOP_VERSION);
+    } else if (display > TABLET) {
       setShownCards(shownCards + TABLET_VERSION);
     }
-    else if (display < 768) {
+    else if (display < TABLET) {
       setShownCards(shownCards + MOBILE_VERSION);
     }
   }
