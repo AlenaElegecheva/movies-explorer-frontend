@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './MoviesCard.css';
 import { durationConverter } from "../../utils/utils";
 
@@ -11,8 +11,7 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
       handleCardDelete(savedMovies.filter((m) => m.movieId === card.id)[0]);
       setSaved(!saved)
     } else {
-      handleLikeClick(card);
-      setSaved(!saved)
+      handleLikeClick(card, () => {setSaved(!saved)});
     }
   }
 

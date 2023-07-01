@@ -6,7 +6,7 @@ import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 function SearchForm({ handleSearchMovies, onFilter, isShortMovies }) {
   const [queryError, setQueryError] = useState(false);
   const [movieQuery, setMovieQuery] = useState('');
-  const { pathname } = useLocation;
+  const { pathname } = useLocation();
 
   useEffect(() => {
     if (pathname === '/movies' && localStorage.getItem('movieSearch')) {

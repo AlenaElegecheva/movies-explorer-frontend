@@ -150,10 +150,11 @@ function App() {
       });
   };
 
-  function handleLikeClick(card) {
+  function handleLikeClick(card, setSaved) {
     api.postSaveCard(card)
       .then((newMovie) => {
         setSavedMovies([newMovie, ...savedMovies]);
+        setSaved();
       })
       .catch((err) => {
         console.log(err);
