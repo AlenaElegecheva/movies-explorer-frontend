@@ -31,6 +31,7 @@
   max-width: 410px;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .profile__field {
@@ -41,7 +42,6 @@
   font-size: 11px;
   line-height: 13.31px;
   cursor: text;
-  position: relative;
   color: #fff;
 }
 
@@ -89,7 +89,7 @@
   background-color: transparent;
 }
 
-.profile__button:hover {
+.profile__button-save:hover {
   color: #3DDC84;
 }
 
