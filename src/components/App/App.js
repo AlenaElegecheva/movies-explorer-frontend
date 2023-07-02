@@ -63,14 +63,15 @@ function App() {
   }
 
   //регистрация пользователя
-  function handleRegisterSubmit(inputValues) {
+  function handleRegisterSubmit({name, email, password}) {
     setIsLoading(true);
-    api.register(inputValues)
+    const userData = api.register({name, email, password})
       .then(() => {
-        setLoggedIn(true);
-        navigate('/movies', { replace: true })
-        setCurrentUser(inputValues)
-        setIsSuccess(true);
+        if (userData) {
+          handleLoginSubmit({email, password})
+          console.log(userData)
+          navigate('/movies', { replace: true })
+        }
       })
       .catch((err) => {
         setIsSuccess(false);
@@ -83,12 +84,15 @@ function App() {
   }
 
   //авторизация пользователя
-  function handleLoginSubmit(inputValues) {
+  function handleLoginSubmit({email, password}) {
     setIsLoading(true);
-    api.login(inputValues)
+    const userData = api.login({email, password})
       .then(() => {
+        if (userData) {
         setLoggedIn(true);
+        setCurrentUser({email, password})
         navigate('/movies', { replace: true })
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -180,7 +184,7 @@ function App() {
     <div className="page">
       <div className="page__content">
         {isLoading ? (
-          <Preloader />
+          <Preloader isLoading={isLoading} />
         ) : (
           <CurrentUserContext.Provider value={currentUser}>
             <Routes>
