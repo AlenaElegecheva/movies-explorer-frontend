@@ -150,21 +150,26 @@ function App() {
       });
   };
 
-  function handleLikeClick(card, setSaved) {
-    api.postSaveCard(card)
-      .then((newMovie) => {
-        setSavedMovies([newMovie, ...savedMovies]);
-        setSaved();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  function handleLikeClick(card, saved, setSaved) {
+    if (!saved)
+      api.postSaveCard(card)
+        .then((newMovie) => {
+          setSavedMovies([newMovie, ...savedMovies]);
+          setSaved(true);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
   }
 
-  function handleCardDelete(card) {
-    api.deleteSaveCard(card._id)
+  function handleCardDelete(movie, setSaved) {
+    const savedMovie = savedMovies.find(
+      (card) => card.movieId === movie.id || card.movieId === movie.movieId
+    );
+    api.deleteSaveCard(savedMovie._id)
       .then(() => {
-        setSavedMovies((state) => state.filter((item) => item._id !== card._id));
+        setSavedMovies((state) => state.filter((item) => item._id !== savedMovie._id));
+        setSaved(false);
       })
       .catch((err) => {
         console.log(err);

@@ -8,12 +8,21 @@ function MoviesCard({ card, isSavedFilms, handleLikeClick, handleCardDelete, sav
 
   function onCardClick() {
     if (saved) {
-      handleCardDelete(savedMovies.filter((m) => m.movieId === card.id)[0]);
-      setSaved(!saved)
+      handleCardDelete(card, setSaved);
     } else {
-      handleLikeClick(card, () => {setSaved(!saved)});
+      handleLikeClick(card, saved, setSaved);
     }
   }
+
+  useEffect(() => {
+    if (card) {
+      if (card._id) {
+        setSaved(true);
+      } else {
+        setSaved(false);
+      }
+    }
+  }, [card]);
 
   function onDelete() {
     handleCardDelete(card);

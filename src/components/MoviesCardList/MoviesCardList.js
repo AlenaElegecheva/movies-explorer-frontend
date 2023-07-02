@@ -18,7 +18,7 @@ function MoviesCardList({
 }) {
 
   const [shownCards, setShownCards] = useState(0);
-  const { pathname } = useLocation;
+  const { pathname } = useLocation();
 
   function cardsCount() {
     const display = window.innerWidth;
