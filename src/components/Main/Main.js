@@ -8,10 +8,12 @@ import Portfolio from '../Portfolio/Portfolio';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
-function Main() {
+function Main({loggedIn, handleMenuClick}) {
   return (
     <>
-      <Header />
+      <Header
+      loggedIn={loggedIn}
+      handleMenuClick={handleMenuClick} />
       <main>
         <Promo />
         <AboutProject />
