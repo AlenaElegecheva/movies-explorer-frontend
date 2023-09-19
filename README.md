@@ -5,7 +5,6 @@
 - [Обзор проекта](#обзор-проекта)
   - [Задачи проекта](#задачи-проекта)
   - [Функциональность проекта](#функциональность-проекта)
-  - [Screenshot](#screenshot)
   - [Директории проекта](#директории-проекта)
   - [Запуск проекта](#запуск-проекта)
   - [Ссылки](#ссылки)
@@ -66,7 +65,4 @@
 
 - e-mail: [alena.elegecheva@gmail.com](mailto:alena.elegecheva@gmail.com)
 - Telegram: [@ElegAN2006](https://t.me/ElegAN2006)
-
-## Ссылка на макет 
-[https://drive.google.com/file/d/1HiuY-IWsiEEXE6xK1GeS_Sinb9Wovs4z/view?usp=sharing] 
 
