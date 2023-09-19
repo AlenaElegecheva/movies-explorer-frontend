@@ -51,7 +51,7 @@
 - JS
 - [React](https://react.dev/)
 - [React Router](https://reactrouter.com/en/main)
-- [CSS Modules](https://create-react-app.dev)
+- [Create React App](https://create-react-app.dev)
 - Адаптивная вёрстка
 - Семантическая вёрстка
 
